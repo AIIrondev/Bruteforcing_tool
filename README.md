@@ -1,4 +1,4 @@
-# BruteForcing Class Documentation
+# BruteForcing Documentation
 This Python code attempts to brute-force a login page by iterating through a list of passwords, trying each one to gain access to a web service using HTTP POST requests. It uses threading to attempt multiple passwords in parallel, improving speed.
 
 ## Code Documentation
